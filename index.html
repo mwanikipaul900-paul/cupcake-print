@@ -3,36 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Image Upload with Shapes and Effects</title>
-  <style>
-    #uploadedImage {
-      max-width: 100%;
-      transition: transform 0.3s ease;
-      object-fit: cover;
-    }
-
-    /* Shapes */
-    .square {
-      width: 200px;
-      height: 200px;
-    }
-    .rectangle {
-      width: 300px;
-      height: 150px;
-    }
-    .circle {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-    }
-
-    /* Effects */
-    .flip {
-      transform: scaleY(-1);
-    }
-    .mirror {
-      transform: scaleX(-1);
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h2>Upload and Transform Your Photo</h2>
@@ -54,26 +25,8 @@
   <!-- Effect buttons -->
   <button onclick="toggleEffect('flip')">Flip</button>
   <button onclick="toggleEffect('mirror')">Mirror</button>
+  <button onclick="resetImage()">Reset</button>
 
-  <script>
-    // Show uploaded image
-    function previewImage(event) {
-      const img = document.getElementById('uploadedImage');
-      img.src = URL.createObjectURL(event.target.files[0]);
-    }
-
-    // Shape toggle
-    function toggleShape(shape) {
-      const img = document.getElementById('uploadedImage');
-      img.classList.remove('square','rectangle','circle');
-      img.classList.add(shape);
-    }
-
-    // Effect toggle (independent)
-    function toggleEffect(effect) {
-      const img = document.getElementById('uploadedImage');
-      img.classList.toggle(effect);
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
