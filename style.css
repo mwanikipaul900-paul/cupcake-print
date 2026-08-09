@@ -1,37 +1,28 @@
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  margin: 20px;
-  background-color: #f4f4f9;
+#uploadedImage {
+  max-width: 100%;
+  transition: transform 0.3s ease;
+  object-fit: cover;
 }
 
-h1 {
-  color: #333;
+/* Shapes */
+.square {
+  width: 200px;
+  height: 200px;
+}
+.rectangle {
+  width: 300px;
+  height: 150px;
+}
+.circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
 }
 
-input, button {
-  margin: 10px;
-  padding: 8px;
+/* Effects */
+.flip {
+  transform: scaleY(-1);
 }
-
-button {
-  background-color: #0078d7;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #005a9e;
-}
-
-#photoContainer img {
-  max-width: 200px;
-  margin-top: 10px;
-}
-
-#shapeContainer div {
-  background-color: #ff9800;
-  margin: 10px auto;
+.mirror {
+  transform: scaleX(-1);
 }
