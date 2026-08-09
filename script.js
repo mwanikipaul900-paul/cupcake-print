@@ -2,15 +2,29 @@ const canvas = document.getElementById('canvasArea');
 const ctx = canvas.getContext('2d');
 let uploadedImage = null;
 let textContent = '';
-let currentShape = 'square';
+let currentShape = 'rectangle';
 let flip = false;
 let mirror = false;
-let textSize = 20;
 
 // Convert cm to pixels (approx 37.8 px per cm at 96 DPI)
 function cmToPx(cm) {
   return cm * 37.8;
 }
+
+// Draw sketches under shape buttons
+function drawSketches() {
+  const rect = document.getElementById('rectSketch').getContext('2d');
+  rect.strokeRect(5, 5, 50, 30);
+
+  const square = document.getElementById('squareSketch').getContext('2d');
+  square.strokeRect(5, 5, 40, 40);
+
+  const circle = document.getElementById('circleSketch').getContext('2d');
+  circle.beginPath();
+  circle.arc(30, 30, 25, 0, Math.PI * 2);
+  circle.stroke();
+}
+drawSketches();
 
 // Preview uploaded image
 function previewImage(event) {
@@ -24,16 +38,17 @@ function previewImage(event) {
   reader.readAsDataURL(file);
 }
 
-// Update text size from slider
-function updateTextSize() {
-  textSize = document.getElementById('textSizeSlider').value;
-  document.getElementById('textSizeValue').innerText = textSize;
+// Confirm text
+function confirmText() {
+  textContent = document.getElementById('textInput').value;
   drawSegments();
 }
 
 // Toggle shape
 function toggleShape(shape) {
   currentShape = shape;
+  document.querySelectorAll('.shapes button').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
   drawSegments();
 }
 
@@ -55,7 +70,10 @@ function resetCanvas() {
 
 // Print canvas
 function printCanvas() {
-  window.print();
+  const dataUrl = canvas.toDataURL();
+  const win = window.open('', '_blank');
+  win.document.write(`<img src="${dataUrl}" style="width:100%">`);
+  win.print();
 }
 
 // Draw 35 segments (5x7 grid)
@@ -63,8 +81,6 @@ function drawSegments() {
   const length = cmToPx(parseFloat(document.getElementById('lengthInput').value));
   const width = cmToPx(parseFloat(document.getElementById('widthInput').value));
   const distance = cmToPx(parseFloat(document.getElementById('distanceInput').value));
-  textContent = document.getElementById('textInput').value;
-  const fontSelect = document.getElementById('fontSelect').value;
 
   canvas.width = length * 5 + distance * 4;
   canvas.height = width * 7 + distance * 6;
@@ -81,7 +97,6 @@ function drawSegments() {
       if (flip) ctx.scale(1, -1);
       if (mirror) ctx.scale(-1, 1);
 
-      // Draw red outline for shape
       ctx.strokeStyle = "red";
       ctx.lineWidth = 2;
 
@@ -97,10 +112,16 @@ function drawSegments() {
         ctx.clip();
       }
 
-      // Draw image or text
       if (uploadedImage) {
         ctx.drawImage(uploadedImage, -length / 2, -width / 2, length, width);
       } else if (textContent) {
-        ctx.font = `${textSize}px ${fontSelect}`;
+        ctx.font = "20px Arial";
         ctx.textAlign = "center";
-        ctx.textBaseline = "
+        ctx.textBaseline = "middle";
+        ctx.fillText(textContent, 0, 0, length);
+      }
+
+      ctx.restore();
+    }
+  }
+}
