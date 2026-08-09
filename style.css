@@ -6,9 +6,9 @@ body {
 }
 
 .container {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 25px;
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -16,19 +16,24 @@ body {
 
 h1 {
   text-align: center;
-  color: #d70000; /* red title */
-  margin-bottom: 25px;
+  color: #d70000;
 }
 
 .section {
   margin-bottom: 20px;
 }
 
-.label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
-  color: #444;
+.shapes button {
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background: #fafafa;
+  cursor: pointer;
+}
+
+.shapes button.active {
+  border-color: red;
 }
 
 textarea {
@@ -37,15 +42,6 @@ textarea {
   padding: 10px;
   border-radius: 6px;
   border: 1px solid #ccc;
-  font-size: 14px;
-}
-
-select, input[type="file"], input[type="number"], input[type="range"] {
-  padding: 6px;
-  margin-top: 5px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  font-size: 14px;
 }
 
 .buttons button {
@@ -56,8 +52,6 @@ select, input[type="file"], input[type="number"], input[type="range"] {
   margin: 5px;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 14px;
-  transition: background 0.3s ease;
 }
 
 .buttons button:hover {
