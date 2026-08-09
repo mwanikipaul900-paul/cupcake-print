@@ -79,7 +79,7 @@ function printCanvas() {
   windowPrint.document.write(`<img src="${dataUrl}" onload="window.print();window.close()">`);
 }
 
-// Draw 36 segments (6x6 grid)
+// Draw 40 segments (5x8 grid)
 function drawSegments() {
   const length = cmToPx(parseFloat(document.getElementById('lengthInput').value));
   const width = cmToPx(parseFloat(document.getElementById('widthInput').value));
@@ -87,22 +87,10 @@ function drawSegments() {
   textContent = document.getElementById('textInput').value;
   const fontSelect = document.getElementById('fontSelect').value;
 
-  canvas.width = length * 6 + distance * 5;
-  canvas.height = width * 6 + distance * 5;
+  canvas.width = length * 5 + distance * 4;
+  canvas.height = width * 8 + distance * 7;
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  for (let row = 0; row < 6; row++) {
-    for (let col = 0; col < 6; col++) {
-      const x = col * (length + distance);
-      const y = row * (width + distance);
-
-      ctx.save();
-      ctx.translate(x + length / 2, y + width / 2);
-      if (flip) ctx.scale(1, -1);
-      if (mirror) ctx.scale(-1, 1);
-
-      if (uploadedImage) {
-        if (currentShape === 'circle') {
-          ctx.beginPath();
-          ctx.arc(0, 0, Math.min(length, width) / 2, 0, Math.PI *
+  for (let row = 0; row < 8; row++) {
+    for (let col = 0; col < 5;
