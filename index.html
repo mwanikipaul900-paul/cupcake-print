@@ -18,7 +18,7 @@
     <!-- Text input -->
     <div class="section">
       <label class="label">Enter Text:</label>
-      <textarea id="textInput" placeholder="Type your text here..."></textarea>
+      <textarea id="textInput" placeholder="Type your text here..." oninput="drawSegments()"></textarea>
     </div>
 
     <!-- Font selection -->
@@ -39,15 +39,15 @@
     <!-- Text size slider -->
     <div class="section">
       <label class="label">Text Size (0–100):</label>
-      <input type="range" id="textSizeSlider" min="0" max="100" value="20" oninput="drawSegments()">
+      <input type="range" id="textSizeSlider" min="0" max="100" value="20" oninput="updateTextSize()">
       <span id="textSizeValue">20</span> px
     </div>
 
     <!-- Dimension inputs -->
     <div class="section inputs">
-      <label>Length (cm): <input type="number" step="0.1" id="lengthInput" value="5"></label>
-      <label>Width (cm): <input type="number" step="0.1" id="widthInput" value="5"></label>
-      <label>Distance (cm): <input type="number" step="0.1" id="distanceInput" value="0.5"></label>
+      <label>Length (cm): <input type="number" step="0.1" id="lengthInput" value="5" oninput="drawSegments()"></label>
+      <label>Width (cm): <input type="number" step="0.1" id="widthInput" value="5" oninput="drawSegments()"></label>
+      <label>Distance (cm): <input type="number" step="0.1" id="distanceInput" value="0.5" oninput="drawSegments()"></label>
     </div>
 
     <!-- Shape buttons -->
