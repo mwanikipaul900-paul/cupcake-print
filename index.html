@@ -39,6 +39,35 @@
       <button onclick="confirmText()">Confirm</button>
     </div>
 
+    <!-- Font selection -->
+    <div class="section">
+      <h2>Choose Font</h2>
+      <select id="fontSelect" onchange="drawSegments()">
+        <option value="Arial">Arial</option>
+        <option value="Times New Roman">Times New Roman</option>
+        <option value="Courier New">Courier New</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Verdana">Verdana</option>
+        <option value="Tahoma">Tahoma</option>
+        <option value="Trebuchet MS">Trebuchet MS</option>
+        <option value="Impact">Impact</option>
+        <option value="Comic Sans MS">Comic Sans MS</option>
+        <option value="Lucida Console">Lucida Console</option>
+        <option value="Palatino Linotype">Palatino Linotype</option>
+        <option value="Garamond">Garamond</option>
+      </select>
+      <br><br>
+      <label>Upload Font (.ttf/.otf):</label>
+      <input type="file" accept=".ttf,.otf" onchange="uploadFont(event)">
+    </div>
+
+    <!-- Text size slider -->
+    <div class="section">
+      <h2>Text Size</h2>
+      <input type="range" id="textSizeSlider" min="0" max="100" value="20" oninput="updateTextSize()">
+      <span id="textSizeValue">20</span> px
+    </div>
+
     <!-- Controls -->
     <div class="section buttons">
       <button onclick="toggleEffect('flip')">Flip</button>
