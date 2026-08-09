@@ -101,12 +101,13 @@ function resetCanvas() {
 
 // Print canvas
 function printCanvas() {
+  drawSegments(); // ensure canvas is filled before printing
   const dataUrl = canvas.toDataURL("image/png");
   const win = window.open('', '_blank');
   win.document.write(`
     <html>
       <head><title>Print Chocolate Layout</title></head>
-      <body style="margin:0">
+      <body style="margin:0;display:flex;justify-content:center;align-items:center;">
         <img src="${dataUrl}" style="width:21cm;height:29.7cm;" />
       </body>
     </html>
@@ -168,5 +169,23 @@ function drawSegments() {
 
       ctx.restore();
     }
+  }
+
+  // Draw grid lines for clarity
+  ctx.strokeStyle = "#888";
+  ctx.lineWidth = 1;
+  for (let i = 1; i < 5; i++) {
+    const x = i * (length + distance);
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, canvas.height);
+    ctx.stroke();
+  }
+  for (let j = 1; j < 7; j++) {
+    const y = j * (width + distance);
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(canvas.width, y);
+    ctx.stroke();
   }
 }
