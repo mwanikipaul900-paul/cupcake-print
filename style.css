@@ -1,0 +1,37 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 20px;
+  background-color: #f4f4f9;
+}
+
+h1 {
+  color: #333;
+}
+
+input, button {
+  margin: 10px;
+  padding: 8px;
+}
+
+button {
+  background-color: #0078d7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005a9e;
+}
+
+#photoContainer img {
+  max-width: 200px;
+  margin-top: 10px;
+}
+
+#shapeContainer div {
+  background-color: #ff9800;
+  margin: 10px auto;
+}
