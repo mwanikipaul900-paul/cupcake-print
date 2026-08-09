@@ -1,47 +1,97 @@
+/* General page styling */
 body {
   font-family: "Segoe UI", Arial, sans-serif;
   margin: 0;
+  padding: 0;
   background: #f4f6f9;
   color: #333;
 }
 
+/* Container card */
 .container {
   max-width: 1000px;
-  margin: 20px auto;
-  padding: 20px;
+  margin: 30px auto;
+  padding: 25px;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
+/* Heading */
 h1 {
   text-align: center;
-  color: #d70000;
+  color: #d70000; /* red title */
+  margin-bottom: 25px;
 }
 
+h2 {
+  margin-bottom: 10px;
+  color: #0078d7;
+}
+
+/* Sections */
 .section {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+}
+
+/* Shape buttons */
+.shapes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .shapes button {
-  margin: 10px;
+  flex: 1;
+  min-width: 120px;
   padding: 10px;
   border: 2px solid #ccc;
   border-radius: 8px;
   background: #fafafa;
   cursor: pointer;
+  text-align: center;
+  transition: border-color 0.3s ease, background 0.3s ease;
 }
 
 .shapes button.active {
   border-color: red;
+  background: #ffe5e5;
+}
+
+/* Inputs */
+.inputs label {
+  display: inline-block;
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+
+input[type="number"],
+input[type="file"],
+select,
+textarea {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
 }
 
 textarea {
   width: 100%;
   height: 80px;
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+  resize: vertical;
+}
+
+/* Slider */
+input[type="range"] {
+  width: 300px;
+  margin-right: 10px;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .buttons button {
@@ -49,18 +99,21 @@ textarea {
   color: #fff;
   border: none;
   padding: 10px 16px;
-  margin: 5px;
   border-radius: 6px;
   cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
 }
 
 .buttons button:hover {
   background: #005a9e;
 }
 
+/* Canvas */
 #canvasArea {
   display: block;
   margin: 20px auto;
   border: 2px solid #444;
   background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
