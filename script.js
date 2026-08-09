@@ -5,6 +5,7 @@ let textContent = '';
 let currentShape = 'square';
 let flip = false;
 let mirror = false;
+let customFont = null;
 
 // Convert cm to pixels (approx 37.8 px per cm at 96 DPI)
 function cmToPx(cm) {
@@ -21,6 +22,23 @@ function previewImage(event) {
     uploadedImage.src = e.target.result;
   };
   reader.readAsDataURL(file);
+}
+
+// Upload custom font
+function uploadFont(event) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const font = new FontFace("CustomFont", e.target.result);
+      font.load().then(function(loadedFont) {
+        document.fonts.add(loadedFont);
+        customFont = "CustomFont";
+        drawSegments();
+      });
+    };
+    reader.readAsArrayBuffer(file);
+  }
 }
 
 // Toggle shape
@@ -42,6 +60,7 @@ function resetCanvas() {
   textContent = '';
   flip = false;
   mirror = false;
+  customFont = null;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
@@ -58,6 +77,9 @@ function drawSegments() {
   const width = cmToPx(parseFloat(document.getElementById('widthInput').value));
   const distance = cmToPx(parseFloat(document.getElementById('distanceInput').value));
   textContent = document.getElementById('textInput').value;
+  const fontSelect = document.getElementById('fontSelect').value;
+  const textSize = document.getElementById('textSizeSlider').value;
+  document.getElementById('textSizeValue').innerText = textSize;
 
   canvas.width = length * 6 + distance * 5;
   canvas.height = width * 6 + distance * 5;
@@ -82,18 +104,8 @@ function drawSegments() {
         }
         ctx.drawImage(uploadedImage, -length / 2, -width / 2, length, width);
       } else if (textContent) {
-        ctx.font = `${Math.min(length, width) / 4}px Arial`;
+        const fontFamily = customFont ? customFont : fontSelect;
+        ctx.font = `${textSize}px ${fontFamily}`;
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
-        if (currentShape === 'circle') {
-          ctx.beginPath();
-          ctx.arc(0, 0, Math.min(length, width) / 2, 0, Math.PI * 2);
-          ctx.clip();
-        }
-        ctx.fillText(textContent, 0, 0, length);
-      }
-
-      ctx.restore();
-    }
-  }
-}
+        if (
