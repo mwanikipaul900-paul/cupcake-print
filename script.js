@@ -93,4 +93,38 @@ function drawSegments() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   for (let row = 0; row < 8; row++) {
-    for (let col = 0; col < 5;
+    for (let col = 0; col < 5; col++) {
+      const x = col * (length + distance);
+      const y = row * (width + distance);
+
+      ctx.save();
+      ctx.translate(x + length / 2, y + width / 2);
+      if (flip) ctx.scale(1, -1);
+      if (mirror) ctx.scale(-1, 1);
+
+      // Clip shape
+      if (currentShape === 'circle') {
+        ctx.beginPath();
+        ctx.arc(0, 0, Math.min(length, width) / 2, 0, Math.PI * 2);
+        ctx.clip();
+      } else if (currentShape === 'square' || currentShape === 'rectangle') {
+        ctx.beginPath();
+        ctx.rect(-length / 2, -width / 2, length, width);
+        ctx.clip();
+      }
+
+      // Draw image or text
+      if (uploadedImage) {
+        ctx.drawImage(uploadedImage, -length / 2, -width / 2, length, width);
+      } else if (textContent) {
+        const fontFamily = customFont ? customFont : fontSelect;
+        ctx.font = `${textSize}px ${fontFamily}`;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(textContent, 0, 0, length);
+      }
+
+      ctx.restore();
+    }
+  }
+}
