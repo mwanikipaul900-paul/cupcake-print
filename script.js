@@ -92,4 +92,4 @@ function resetCanvas() {
   flip = false;
   mirror = false;
   customFont = null;
-  ctx.clearRect(0, 0, canvas
+  ctx.clearRect(0,
