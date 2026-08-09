@@ -21,6 +21,28 @@
       <textarea id="textInput" placeholder="Type your text here..."></textarea>
     </div>
 
+    <!-- Font selection -->
+    <div class="section">
+      <label class="label">Choose Font:</label>
+      <select id="fontSelect" onchange="drawSegments()">
+        <option value="Arial">Arial</option>
+        <option value="Times New Roman">Times New Roman</option>
+        <option value="Courier New">Courier New</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Verdana">Verdana</option>
+      </select>
+      <br><br>
+      <label class="label">Upload Your Own Font (.ttf/.otf):</label>
+      <input type="file" accept=".ttf,.otf" onchange="uploadFont(event)">
+    </div>
+
+    <!-- Text size slider -->
+    <div class="section">
+      <label class="label">Text Size (0–100):</label>
+      <input type="range" id="textSizeSlider" min="0" max="100" value="20" oninput="drawSegments()">
+      <span id="textSizeValue">20</span> px
+    </div>
+
     <!-- Dimension inputs -->
     <div class="section inputs">
       <label>Length (cm): <input type="number" step="0.1" id="lengthInput" value="5"></label>
