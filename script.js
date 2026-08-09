@@ -47,15 +47,15 @@ function printCanvas() {
   windowPrint.document.write(`<img src="${dataUrl}" onload="window.print();window.close()">`);
 }
 
-// Draw 36 segments
+// Draw 36 segments (6x6 grid)
 function drawSegments() {
-  const length = parseInt(document.getElementById('lengthInput').value);
-  const width = parseInt(document.getElementById('widthInput').value);
-  const distance = parseInt(document.getElementById('distanceInput').value);
+  const length = parseFloat(document.getElementById('lengthInput').value);
+  const width = parseFloat(document.getElementById('widthInput').value);
+  const distance = parseFloat(document.getElementById('distanceInput').value);
   textContent = document.getElementById('textInput').value;
 
-  canvas.width = length * 6 + distance * 6;
-  canvas.height = width * 6 + distance * 6;
+  canvas.width = length * 6 + distance * 5;
+  canvas.height = width * 6 + distance * 5;
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -77,9 +77,14 @@ function drawSegments() {
         }
         ctx.drawImage(uploadedImage, -length / 2, -width / 2, length, width);
       } else if (textContent) {
-        ctx.font = "16px Arial";
+        ctx.font = `${Math.min(length, width) / 4}px Arial`;
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
+        if (currentShape === 'circle') {
+          ctx.beginPath();
+          ctx.arc(0, 0, Math.min(length, width) / 2, 0, Math.PI * 2);
+          ctx.clip();
+        }
         ctx.fillText(textContent, 0, 0, length);
       }
 
