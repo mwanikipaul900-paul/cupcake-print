@@ -6,6 +6,11 @@ let currentShape = 'square';
 let flip = false;
 let mirror = false;
 
+// Convert cm to pixels (approx 37.8 px per cm at 96 DPI)
+function cmToPx(cm) {
+  return cm * 37.8;
+}
+
 // Preview uploaded image
 function previewImage(event) {
   const file = event.target.files[0];
@@ -49,9 +54,9 @@ function printCanvas() {
 
 // Draw 36 segments (6x6 grid)
 function drawSegments() {
-  const length = parseFloat(document.getElementById('lengthInput').value);
-  const width = parseFloat(document.getElementById('widthInput').value);
-  const distance = parseFloat(document.getElementById('distanceInput').value);
+  const length = cmToPx(parseFloat(document.getElementById('lengthInput').value));
+  const width = cmToPx(parseFloat(document.getElementById('widthInput').value));
+  const distance = cmToPx(parseFloat(document.getElementById('distanceInput').value));
   textContent = document.getElementById('textInput').value;
 
   canvas.width = length * 6 + distance * 5;
