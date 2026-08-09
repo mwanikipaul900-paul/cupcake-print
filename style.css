@@ -1,18 +1,15 @@
-/* General page styling */
 body {
   font-family: "Segoe UI", Arial, sans-serif;
   margin: 20px;
-  background: #f9f9f9;
+  background: #f4f6f9;
   color: #333;
 }
 
-/* Headings */
 h2 {
-  color: #444;
   margin-bottom: 15px;
+  color: #444;
 }
 
-/* Inputs and textarea */
 input[type="file"],
 input[type="number"],
 textarea {
@@ -29,13 +26,11 @@ textarea {
   resize: vertical;
 }
 
-/* Labels for dimensions */
 label {
   margin-right: 15px;
   font-size: 14px;
 }
 
-/* Buttons */
 button {
   background: #0078d7;
   color: #fff;
@@ -52,20 +47,10 @@ button:hover {
   background: #005a9e;
 }
 
-button:active {
-  background: #004578;
-}
-
-/* Canvas area */
 #canvasArea {
   display: block;
   margin-top: 20px;
   border: 2px solid #444;
   background: #fff;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-}
-
-/* Layout helpers */
-br {
-  line-height: 1.5;
 }
