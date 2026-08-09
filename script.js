@@ -1,28 +1,25 @@
-#uploadedImage {
-  max-width: 100%;
-  transition: transform 0.3s ease;
-  object-fit: cover;
+// Show uploaded image
+function previewImage(event) {
+  const img = document.getElementById('uploadedImage');
+  img.src = URL.createObjectURL(event.target.files[0]);
 }
 
-/* Shapes */
-.square {
-  width: 200px;
-  height: 200px;
-}
-.rectangle {
-  width: 300px;
-  height: 150px;
-}
-.circle {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
+// Shape toggle
+function toggleShape(shape) {
+  const img = document.getElementById('uploadedImage');
+  img.classList.remove('square','rectangle','circle');
+  img.classList.add(shape);
 }
 
-/* Effects */
-.flip {
-  transform: scaleY(-1);
+// Effect toggle (independent)
+function toggleEffect(effect) {
+  const img = document.getElementById('uploadedImage');
+  img.classList.toggle(effect);
 }
-.mirror {
-  transform: scaleX(-1);
+
+// Reset image to normal
+function resetImage() {
+  const img = document.getElementById('uploadedImage');
+  img.classList.remove('square','rectangle','circle','flip','mirror');
+  img.style.transform = 'none';
 }
