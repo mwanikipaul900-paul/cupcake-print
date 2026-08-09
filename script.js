@@ -8,6 +8,10 @@ let mirror = false;
 let customFont = null;
 let textSize = 20;
 
+// A4 dimensions in pixels (21 cm × 29.7 cm at 96 DPI ≈ 793 × 1122 px)
+const A4_WIDTH = 793;
+const A4_HEIGHT = 1122;
+
 // Convert cm to pixels (approx 37.8 px per cm at 96 DPI)
 function cmToPx(cm) {
   return cm * 37.8;
@@ -103,7 +107,7 @@ function printCanvas() {
     <html>
       <head><title>Print Chocolate Layout</title></head>
       <body style="margin:0">
-        <img src="${dataUrl}" style="width:100%;height:auto;" />
+        <img src="${dataUrl}" style="width:21cm;height:29.7cm;" />
       </body>
     </html>
   `);
@@ -112,15 +116,16 @@ function printCanvas() {
   win.print();
 }
 
-// Draw 35 segments (5x7 grid)
+// Draw 35 segments (5x7 grid) on A4
 function drawSegments() {
   const length = cmToPx(parseFloat(document.getElementById('lengthInput').value));
   const width = cmToPx(parseFloat(document.getElementById('widthInput').value));
   const distance = cmToPx(parseFloat(document.getElementById('distanceInput').value));
   const fontSelect = document.getElementById('fontSelect').value;
 
-  canvas.width = length * 5 + distance * 4;
-  canvas.height = width * 7 + distance * 6;
+  // Fix canvas to A4 size
+  canvas.width = A4_WIDTH;
+  canvas.height = A4_HEIGHT;
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -134,7 +139,7 @@ function drawSegments() {
       if (flip) ctx.scale(1, -1);
       if (mirror) ctx.scale(-1, 1);
 
-      // Draw red outline
+      // Red outline
       ctx.strokeStyle = "red";
       ctx.lineWidth = 2;
 
