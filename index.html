@@ -2,19 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Image Upload with Shapes and Effects</title>
+  <title>Image/Text Upload with Shapes and Print</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h2>Upload and Transform Your Photo</h2>
+  <h2>Upload Photo or Enter Text</h2>
 
   <!-- Upload input -->
   <input type="file" accept="image/*" onchange="previewImage(event)">
   <br><br>
 
-  <!-- Image display -->
-  <img id="uploadedImage" alt="Uploaded Photo">
+  <!-- Text input -->
+  <textarea id="textInput" placeholder="Enter text here"></textarea>
+  <br><br>
 
+  <!-- Dimension inputs -->
+  <label>Length: <input type="number" id="lengthInput" value="200"></label>
+  <label>Width: <input type="number" id="widthInput" value="200"></label>
+  <label>Distance between prints: <input type="number" id="distanceInput" value="10"></label>
   <br><br>
 
   <!-- Shape buttons -->
@@ -25,7 +30,11 @@
   <!-- Effect buttons -->
   <button onclick="toggleEffect('flip')">Flip</button>
   <button onclick="toggleEffect('mirror')">Mirror</button>
-  <button onclick="resetImage()">Reset</button>
+  <button onclick="resetCanvas()">Reset</button>
+  <button onclick="printCanvas()">Print</button>
+
+  <!-- Canvas for rendering -->
+  <canvas id="canvasArea"></canvas>
 
   <script src="script.js"></script>
 </body>
