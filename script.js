@@ -6,6 +6,7 @@ let currentShape = 'square';
 let flip = false;
 let mirror = false;
 let customFont = null;
+let textSize = 20;
 
 // Convert cm to pixels (approx 37.8 px per cm at 96 DPI)
 function cmToPx(cm) {
@@ -39,6 +40,13 @@ function uploadFont(event) {
     };
     reader.readAsArrayBuffer(file);
   }
+}
+
+// Update text size from slider
+function updateTextSize() {
+  textSize = document.getElementById('textSizeSlider').value;
+  document.getElementById('textSizeValue').innerText = textSize;
+  drawSegments();
 }
 
 // Toggle shape
@@ -78,8 +86,6 @@ function drawSegments() {
   const distance = cmToPx(parseFloat(document.getElementById('distanceInput').value));
   textContent = document.getElementById('textInput').value;
   const fontSelect = document.getElementById('fontSelect').value;
-  const textSize = document.getElementById('textSizeSlider').value;
-  document.getElementById('textSizeValue').innerText = textSize;
 
   canvas.width = length * 6 + distance * 5;
   canvas.height = width * 6 + distance * 5;
@@ -99,13 +105,4 @@ function drawSegments() {
       if (uploadedImage) {
         if (currentShape === 'circle') {
           ctx.beginPath();
-          ctx.arc(0, 0, Math.min(length, width) / 2, 0, Math.PI * 2);
-          ctx.clip();
-        }
-        ctx.drawImage(uploadedImage, -length / 2, -width / 2, length, width);
-      } else if (textContent) {
-        const fontFamily = customFont ? customFont : fontSelect;
-        ctx.font = `${textSize}px ${fontFamily}`;
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        if (
+          ctx.arc(0, 0, Math.min(length, width) / 2, 0, Math.PI *
