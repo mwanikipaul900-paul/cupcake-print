@@ -1,14 +1,71 @@
+/* General page styling */
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
   margin: 20px;
+  background: #f9f9f9;
+  color: #333;
 }
 
-#canvasArea {
-  border: 1px solid #333;
-  margin-top: 20px;
+/* Headings */
+h2 {
+  color: #444;
+  margin-bottom: 15px;
+}
+
+/* Inputs and textarea */
+input[type="file"],
+input[type="number"],
+textarea {
+  padding: 8px;
+  margin: 5px 10px 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
 }
 
 textarea {
-  width: 300px;
+  width: 320px;
   height: 80px;
+  resize: vertical;
+}
+
+/* Labels for dimensions */
+label {
+  margin-right: 15px;
+  font-size: 14px;
+}
+
+/* Buttons */
+button {
+  background: #0078d7;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  margin: 5px 8px 5px 0;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #005a9e;
+}
+
+button:active {
+  background: #004578;
+}
+
+/* Canvas area */
+#canvasArea {
+  display: block;
+  margin-top: 20px;
+  border: 2px solid #444;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* Layout helpers */
+br {
+  line-height: 1.5;
 }
