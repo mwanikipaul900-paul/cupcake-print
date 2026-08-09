@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Print App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>My Print App</h1>
+
+  <!-- Text box for random messages -->
+  <input type="text" id="userMessage" placeholder="Type your message here">
+  <button onclick="printMessage()">Show Message</button>
+
+  <p id="message"></p>
+
+  <!-- Photo upload -->
+  <input type="file" id="photoUpload" accept="image/*" onchange="previewPhoto()">
+  <div id="photoContainer"></div>
+
+  <!-- Shape controls -->
+  <h3>Draw a Rectangle</h3>
+  <label>Width: <input type="number" id="shapeWidth" value="100"></label>
+  <label>Height: <input type="number" id="shapeHeight" value="50"></label>
+  <button onclick="drawShape()">Draw Shape</button>
+  <div id="shapeContainer"></div>
+
+  <!-- Print option -->
+  <button onclick="window.print()">Print Page</button>
+
+  <!-- Mirror/Flip option -->
+  <button onclick="flipContent()">Mirror/Flip Content</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
