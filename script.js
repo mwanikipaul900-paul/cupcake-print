@@ -5,7 +5,6 @@ let textContent = '';
 let currentShape = 'square';
 let flip = false;
 let mirror = false;
-let customFont = null;
 let textSize = 20;
 
 // Convert cm to pixels (approx 37.8 px per cm at 96 DPI)
@@ -23,23 +22,6 @@ function previewImage(event) {
     uploadedImage.src = e.target.result;
   };
   reader.readAsDataURL(file);
-}
-
-// Upload custom font
-function uploadFont(event) {
-  const file = event.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      const font = new FontFace("CustomFont", e.target.result);
-      font.load().then(function(loadedFont) {
-        document.fonts.add(loadedFont);
-        customFont = "CustomFont";
-        drawSegments();
-      });
-    };
-    reader.readAsArrayBuffer(file);
-  }
 }
 
 // Update text size from slider
@@ -68,15 +50,12 @@ function resetCanvas() {
   textContent = '';
   flip = false;
   mirror = false;
-  customFont = null;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 // Print canvas
 function printCanvas() {
-  const dataUrl = canvas.toDataURL();
-  const windowPrint = window.open('', '_blank');
-  windowPrint.document.write(`<img src="${dataUrl}" onload="window.print();window.close()">`);
+  window.print();
 }
 
 // Draw 35 segments (5x7 grid)
@@ -93,4 +72,35 @@ function drawSegments() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   for (let row = 0; row < 7; row++) {
-    for (let col = 0; col < 5
+    for (let col = 0; col < 5; col++) {
+      const x = col * (length + distance);
+      const y = row * (width + distance);
+
+      ctx.save();
+      ctx.translate(x + length / 2, y + width / 2);
+      if (flip) ctx.scale(1, -1);
+      if (mirror) ctx.scale(-1, 1);
+
+      // Draw red outline for shape
+      ctx.strokeStyle = "red";
+      ctx.lineWidth = 2;
+
+      if (currentShape === 'circle') {
+        ctx.beginPath();
+        ctx.arc(0, 0, Math.min(length, width) / 2, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.clip();
+      } else {
+        ctx.beginPath();
+        ctx.rect(-length / 2, -width / 2, length, width);
+        ctx.stroke();
+        ctx.clip();
+      }
+
+      // Draw image or text
+      if (uploadedImage) {
+        ctx.drawImage(uploadedImage, -length / 2, -width / 2, length, width);
+      } else if (textContent) {
+        ctx.font = `${textSize}px ${fontSelect}`;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "
