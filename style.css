@@ -1,28 +1,14 @@
-#uploadedImage {
-  max-width: 100%;
-  transition: transform 0.3s ease;
-  object-fit: cover;
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
 }
 
-/* Shapes */
-.square {
-  width: 200px;
-  height: 200px;
+#canvasArea {
+  border: 1px solid #333;
+  margin-top: 20px;
 }
-.rectangle {
+
+textarea {
   width: 300px;
-  height: 150px;
-}
-.circle {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-}
-
-/* Effects */
-.flip {
-  transform: scaleY(-1);
-}
-.mirror {
-  transform: scaleX(-1);
+  height: 80px;
 }
