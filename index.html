@@ -2,35 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Print App</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Image Upload with Shapes and Effects</title>
+  <style>
+    #uploadedImage {
+      max-width: 100%;
+      transition: transform 0.3s ease;
+      object-fit: cover;
+    }
+
+    /* Shapes */
+    .square {
+      width: 200px;
+      height: 200px;
+    }
+    .rectangle {
+      width: 300px;
+      height: 150px;
+    }
+    .circle {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+    }
+
+    /* Effects */
+    .flip {
+      transform: scaleY(-1);
+    }
+    .mirror {
+      transform: scaleX(-1);
+    }
+  </style>
 </head>
 <body>
-  <h1>My Print App</h1>
+  <h2>Upload and Transform Your Photo</h2>
 
-  <!-- Text box for random messages -->
-  <input type="text" id="userMessage" placeholder="Type your message here">
-  <button onclick="printMessage()">Show Message</button>
+  <!-- Upload input -->
+  <input type="file" accept="image/*" onchange="previewImage(event)">
+  <br><br>
 
-  <p id="message"></p>
+  <!-- Image display -->
+  <img id="uploadedImage" alt="Uploaded Photo">
 
-  <!-- Photo upload -->
-  <input type="file" id="photoUpload" accept="image/*" onchange="previewPhoto()">
-  <div id="photoContainer"></div>
+  <br><br>
 
-  <!-- Shape controls -->
-  <h3>Draw a Rectangle</h3>
-  <label>Width: <input type="number" id="shapeWidth" value="100"></label>
-  <label>Height: <input type="number" id="shapeHeight" value="50"></label>
-  <button onclick="drawShape()">Draw Shape</button>
-  <div id="shapeContainer"></div>
+  <!-- Shape buttons -->
+  <button onclick="toggleShape('square')">Square</button>
+  <button onclick="toggleShape('rectangle')">Rectangle</button>
+  <button onclick="toggleShape('circle')">Circle</button>
 
-  <!-- Print option -->
-  <button onclick="window.print()">Print Page</button>
+  <!-- Effect buttons -->
+  <button onclick="toggleEffect('flip')">Flip</button>
+  <button onclick="toggleEffect('mirror')">Mirror</button>
 
-  <!-- Mirror/Flip option -->
-  <button onclick="flipContent()">Mirror/Flip Content</button>
+  <script>
+    // Show uploaded image
+    function previewImage(event) {
+      const img = document.getElementById('uploadedImage');
+      img.src = URL.createObjectURL(event.target.files[0]);
+    }
 
-  <script src="script.js"></script>
+    // Shape toggle
+    function toggleShape(shape) {
+      const img = document.getElementById('uploadedImage');
+      img.classList.remove('square','rectangle','circle');
+      img.classList.add(shape);
+    }
+
+    // Effect toggle (independent)
+    function toggleEffect(effect) {
+      const img = document.getElementById('uploadedImage');
+      img.classList.toggle(effect);
+    }
+  </script>
 </body>
 </html>
