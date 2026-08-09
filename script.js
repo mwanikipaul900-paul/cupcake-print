@@ -79,20 +79,4 @@ function toggleShape(ev, shape) {
 }
 
 // Toggle effects
-function toggleEffect(effect) {
-  if (effect === 'flip') flip = !flip;
-  if (effect === 'mirror') mirror = !mirror;
-  drawSegments();
-}
-
-// Reset canvas
-function resetCanvas() {
-  uploadedImage = null;
-  textContent = '';
-  flip = false;
-  mirror = false;
-  customFont = null;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
-
-//
+function toggle
