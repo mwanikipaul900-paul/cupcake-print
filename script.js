@@ -71,10 +71,10 @@ function updateTextSize() {
 }
 
 // Toggle shape
-function toggleShape(shape) {
+function toggleShape(ev, shape) {
   currentShape = shape;
   document.querySelectorAll('.shapes button').forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
+  ev.target.classList.add('active');
   drawSegments();
 }
 
@@ -92,8 +92,4 @@ function resetCanvas() {
   flip = false;
   mirror = false;
   customFont = null;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
-
-// Print canvas
-function printCanvas() {
+  ctx.clearRect(0, 0, canvas
